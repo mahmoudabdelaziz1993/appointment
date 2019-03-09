@@ -2,6 +2,9 @@ import React ,{Component}from"react"
 import {connect} from "react-redux"
 import * as actions from '../actions'
 class CreateAppoint extends Component{
+    componentDidMount() {
+        this.props.fetchUserList();
+    }
     renderContent(){
         
         return this.props.auth.appointments.reverse().map(appointment=>{
@@ -13,7 +16,7 @@ class CreateAppoint extends Component{
                     <p><img src={appointment.image} alt="Avatar" style={{ width: "50px" }}></img>{appointment.name}</p>
                 </div>
                 <div className="card-action">
-                    <button className="left red waves-effect waves-light btn" onClick={()=>console.log("nbnb")
+                    <button className="left red waves-effect waves-light btn" onClick={()=>this.props.apCancle(appointment.with)
                     } >cancel<i class="material-icons">cancel</i></button>
                 </div>
                 </div>

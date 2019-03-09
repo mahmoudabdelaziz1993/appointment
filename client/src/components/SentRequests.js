@@ -3,6 +3,9 @@ import {connect} from "react-redux"
 import * as actions from '../actions';
 
 class SentRequest extends Component{
+    componentDidMount() {
+        this.props.fetchUserList();
+    }
     renderContent(){
         return this.props.auth.sent_request.reverse().map(request=>{
             return(

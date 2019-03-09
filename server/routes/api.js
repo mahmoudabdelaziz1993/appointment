@@ -24,19 +24,15 @@ router.get("/reject_request/:requesterid",async (req,res)=>{
 // ----------------------------------------------------------------------------
 // -------------------------- Appointment section -----------------------------
 // ----------------------------------------------------------------------------
-// list  
-// router.get("/appointment", async (req,res)=>{
-//     const result = await appointmentController.listAppoinment(req.user);
-//     res.send(result);
-// });
+
 //create 
 router.get("/appointment/create/:withId", async (req,res)=>{
     const result = await controller.createAppointment(req.params.withId,req.user);
     res.send(result);
 });
 // cancel 
-// router.get("/appointment/cancel/:id", async (req,res)=>{
-//     const result = await appointmentController.cancelAppoinment(req.params.id)
-//     res.send(result);
-// });
+router.get("/appointment/cancel/:id", async (req,res)=>{
+    const result = await controller.cancelAppointment(req.params.id,req.user);
+    res.send(result);
+});
  module.exports = router

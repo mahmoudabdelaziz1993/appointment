@@ -47,11 +47,17 @@ var usersList = async (user)=>{
 }
 // ------------------------ create appotment ----------------
 var createAppointment = async (id,user)=>{
-   const x = await User.findById(id)
+   const x = await User.findByIdAndUpdate(id, { $pull: { sent_request: { receiver: user._id } } });
    x.appointments=[{with:user._id,name:user.name,image:user.image,date:Date.now()}];
    await x.save();
+   await User.findByIdAndUpdate(user._id, { $pull: { coming_reqquest: { requester: id } } });
    user.appointments=[{with:x._id,name:x.name,image:x.image,date:Date.now()}];
    const res = await user.save();
    return res;
 }
-module.exports = { findOrCreate, sendRequest, cancelRequest , rejectRequest , usersList , createAppointment};
+var cancelAppointment = async (id,user)=>{
+    await User.findByIdAndUpdate(id, { $pull: { appointments: { with: user._id } } });
+    const res = await User.findByIdAndUpdate(user._id, { $pull: { appointments: { with: id } } });
+    return res;
+}
+module.exports = { findOrCreate, sendRequest, cancelRequest , rejectRequest , usersList , createAppointment , cancelAppointment};

@@ -31,3 +31,9 @@ export const apCreate = (id)=> async dispatch =>{
     dispatch({type:FETCH_USER,payload:res.data});
 
 }
+export const apCancle = (id)=> async dispatch =>{
+    await axios.get(`/api/appointment/cancel/${id}`);
+    const res = await axios.get('/api/current_user');
+    dispatch({type:FETCH_USER,payload:res.data});
+
+}
