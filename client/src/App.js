@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard";
 import SentRequest from "./components/SentRequests";
 import ComingRequest from "./components/ComingRequest";
 import CreateAppoint from "./components/CreateAppoint"
+import { Link } from 'react-router-dom'
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/sent-requests" component={SentRequest} />
           <Route exact path="/coming-requests" component={ComingRequest} />
           <Route exact path="/appointments" component={CreateAppoint} />
+  
 
         </div>
       </BrowserRouter>
