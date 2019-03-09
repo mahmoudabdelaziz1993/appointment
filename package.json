@@ -4,7 +4,7 @@
   "description": "set aponintment with doctor ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha **/index.test.js",
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
@@ -25,5 +25,10 @@
     "passport-google-oauth20": "^1.0.0",
     "path": "^0.12.7",
     "path-parser": "^4.2.0"
+  },
+  "devDependencies": {
+    "expect": "^24.3.1",
+    "mocha": "^6.0.2",
+    "supertest": "^4.0.0"
   }
 }

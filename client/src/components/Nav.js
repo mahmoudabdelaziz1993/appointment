@@ -15,19 +15,19 @@ class Nav extends Component {
 
                     <li style={{ margin: '0 10px' }}>
                         <Link to='/appointments'>
-                            <i class="material-icons">access_time</i>
+                            <i className="material-icons">access_time</i>
                         </Link>
                     </li>
                     
                     <li style={{ margin: '0 10px' }}>
                         <Link to='/sent-requests'>
-                            <i class="material-icons">{this.props.auth.sent_request.length > 0 ? `exposure_plus_${this.props.auth.sent_request.length}` : "exposure_zero"} </i>
+                            <i className="material-icons">{this.props.auth.sent_request.length > 0 ? `exposure_plus_${this.props.auth.sent_request.length}` : "exposure_zero"} </i>
                         </Link>
                     </li>
 
                     <li style={{ margin: '0 10px' }}>
                         <Link to='/coming-requests'>
-                            <i class="material-icons">{this.props.auth.coming_reqquest.length > 0 ? "notifications_active" : "notifications"
+                            <i className="material-icons">{this.props.auth.coming_reqquest.length > 0 ? "notifications_active" : "notifications"
                             }</i>
                         </Link>
                     </li>

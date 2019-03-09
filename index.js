@@ -36,3 +36,4 @@ if (process.env.NODE_ENV === "production"){
 }
 
 app.listen(port, () => console.log(` app on port ${port}!`));
+module.exports={app};
