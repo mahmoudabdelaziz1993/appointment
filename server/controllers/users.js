@@ -21,9 +21,9 @@ var findOrCreate = async (profile) => {
 //-------------------- send appointment request -----------
 var sendRequest = async (id, user) => {
     const resever = await User.findById(id);
-    resever.coming_reqquest = [{ requester: user._id, sent_at: Date.now() }];
+    resever.coming_reqquest = [{ requester: user._id, sent_at: Date.now(),name:user.name ,image: user.image }];
     await resever.save();
-    user.sent_request = [{ receiver: id, sent_at: Date.now() }];
+    user.sent_request = [{ receiver: id, sent_at: Date.now(),name:resever.name ,image: resever.image }];
     const res = await user.save();
     return res;
 }
@@ -39,4 +39,19 @@ var rejectRequest = async (id, user) => {
     const res = await User.findByIdAndUpdate(user._id, { $pull: { coming_reqquest: { requester: id } } });
     return res;
 }
-module.exports = { findOrCreate, sendRequest, cancelRequest , rejectRequest };
+//--------------------- fetch users list ------------------------
+var usersList = async (user)=>{
+    var allusers = await User.find({ _id: { $nin: user._id } });
+   // var users = await allusers.filter(x=> x._id !==user._id);
+    return allusers;
+}
+// ------------------------ create appotment ----------------
+var createAppointment = async (id,user)=>{
+   const x = await User.findById(id)
+   x.appointments=[{with:user._id,name:user.name,image:user.image,date:Date.now()}];
+   await x.save();
+   user.appointments=[{with:x._id,name:x.name,image:x.image,date:Date.now()}];
+   const res = await user.save();
+   return res;
+}
+module.exports = { findOrCreate, sendRequest, cancelRequest , rejectRequest , usersList , createAppointment};
